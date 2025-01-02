@@ -347,9 +347,9 @@ def modular_bivariate(N, p, gamma, s, diffs, r = 3, roots_method = "variety"):
     for shift in shifts:
         monomials.add(shift.lm())
     logging.debug(f"The monomials: {monomials}")
-    x0 = diffs[0] * diffs[1]
-    y0 = diffs[0] + diffs[1]
-    Q = (p + diffs[0]) * (p + diffs[1])
+    Q = N / (diffs[0] + p)
+    y0 = sum(diffs) - diffs[0]
+    x0 = Q - y0 * p ** (r - 2) - p ** (r - 1)
     for idx, shift in enumerate(shifts):
         logging.debug(f"Test for {idx + 1}: {shift(x0, y0) % (Q ** t)= }")
 
